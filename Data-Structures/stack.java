@@ -6,7 +6,6 @@
         .peek
         .isEmpty
 */
-import java.util.*;
 import java.util.Scanner;
 
 class linkedStack{
@@ -58,9 +57,9 @@ class linkedStack{
         }
     }
 
-}
+};
 
-class stack
+public class stack
 {
     public static void main(String[] args)
     {
