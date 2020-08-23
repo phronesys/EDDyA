@@ -8,7 +8,9 @@ class test {
     }
     public static ArrayList readCSV() {
         ArrayList test = new ArrayList<>();
-        BufferedReader reader = new BufferedReader(new FileReader(""));
+        BufferedReader reader = new BufferedReader(new FileReader("teambans.csv"));
 
+
+        return test;
     }
 }
