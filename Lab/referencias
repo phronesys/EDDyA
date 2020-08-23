@@ -7,6 +7,11 @@ https://stackoverflow.com/questions/13384156/reading-csv-file-without-third-part
 CSV source:
 https://www.kaggle.com/paololol/league-of-legends-ranked-matches
 
+Array vs ArrayList
+https://www.geeksforgeeks.org/array-vs-arraylist-in-java/
+
+2 Ways to Parse a CSV Files in Java - BufferedReader vs Apache
+https://javarevisited.blogspot.com/2015/06/2-ways-to-parse-csv-files-in-java-example.html
 
 1.- ArrayList de ArrayList
 2.- Usando Queue encontrar champs más baneados (teambans.csv)
@@ -16,6 +21,8 @@ Detalles:
 
 * Imprimir dataset luego de volcarlo
 * Implementar Stack y Queue 
+
+(Las instrucciones de abajo las dejé como estaban por que no supe resumirlas FGJD)
 
 Procese los datos referentes al archivo teambans.csv 
 usando colas de tamaño 6 para cada valor de matchid. 
