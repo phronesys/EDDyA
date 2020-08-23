@@ -1,0 +1,32 @@
+extends from other file .java without main
+https://stackoverflow.com/questions/880662/extend-a-java-class-from-one-file-in-another-java-file
+
+Reading CSV without third-party libraries
+https://stackoverflow.com/questions/13384156/reading-csv-file-without-third-party-libraries
+
+CSV source:
+https://www.kaggle.com/paololol/league-of-legends-ranked-matches
+
+
+1.- ArrayList de ArrayList
+2.- Usando Queue encontrar champs más baneados (teambans.csv)
+3.- Invertir orden usando Stack junto a los Queue's 
+
+Detalles:
+
+* Imprimir dataset luego de volcarlo
+* Implementar Stack y Queue 
+
+Procese los datos referentes al archivo teambans.csv 
+usando colas de tamaño 6 para cada valor de matchid. 
+Para ello, ingrese pares (banturn, championid) en el 
+orden de banturn a la cola. Debe usar una cola por 
+cada matchid. Luego, demuestre el procesamiento 
+imprimiendo a un archivo el siguiente formato de salida:
+
+<matchid>: <championid1>,<championid2>,<championid3>,<championid4>,<championid5>,<championid6>  
+
+Invierta el orden de los championid de la parte anterior usando una pila. 
+Demuestre la operación imprimiendo a un archivo el siguiente formato de salida:
+
+<matchid>: <championid6>,<championid5>,<championid4>,<championid3>,<championid2>,<championid1>
