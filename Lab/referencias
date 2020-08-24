@@ -13,6 +13,18 @@ https://www.geeksforgeeks.org/array-vs-arraylist-in-java/
 2 Ways to Parse a CSV Files in Java - BufferedReader vs Apache
 https://javarevisited.blogspot.com/2015/06/2-ways-to-parse-csv-files-in-java-example.html
 
+Reading CSV file using BufferedReader resulting in reading alternative lines
+https://stackoverflow.com/questions/11990211/reading-csv-file-using-bufferedreader-resulting-in-reading-alternative-lines#11990304
+
+ArrayList of ArrayList 
+https://www.geeksforgeeks.org/arraylist-of-arraylist-in-java/
+
+Java best structure for 2D matrix of integers?
+https://stackoverflow.com/questions/11084540/java-best-structure-for-2d-matrix-of-integers
+
+How to create an 2D ArrayList in java? [duplicate]
+https://stackoverflow.com/questions/16956720/how-to-create-an-2d-arraylist-in-java
+
 1.- ArrayList de ArrayList
 2.- Usando Queue encontrar champs más baneados (teambans.csv)
 3.- Invertir orden usando Stack junto a los Queue's 
@@ -39,4 +51,4 @@ Demuestre la operación imprimiendo a un archivo el siguiente formato de salida:
 <matchid>: <championid6>,<championid5>,<championid4>,<championid3>,<championid2>,<championid1>
 
 # Aquí pondré lo que haya avanzado uwu:
-Primer testeo con ArrayList x Objects fallido, no se logra volcar todo en una lista de objetos.
+(test.java) Primer testeo con ArrayList x Objects fallido, no se logra volcar todo en una lista de objetos.
