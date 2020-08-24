@@ -37,3 +37,6 @@ Invierta el orden de los championid de la parte anterior usando una pila.
 Demuestre la operación imprimiendo a un archivo el siguiente formato de salida:
 
 <matchid>: <championid6>,<championid5>,<championid4>,<championid3>,<championid2>,<championid1>
+
+# Aquí pondré lo que haya avanzado uwu:
+Primer testeo con ArrayList x Objects fallido, no se logra volcar todo en una lista de objetos.
