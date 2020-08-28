@@ -11,8 +11,8 @@ public class volcado {
 		BufferedWriter writer;
 		ArrayList<ArrayList<String>> dataset = new ArrayList<ArrayList<String>>();
 		try {
-			reader = new BufferedReader(new FileReader("./COVID19_open_line_list.csv"));
-			writer = new BufferedWriter(new FileWriter("./salida_java.csv", false));
+			reader = new BufferedReader(new FileReader("teambans.csv"));
+			writer = new BufferedWriter(new FileWriter("salida_java.csv", false));
 			String line = reader.readLine();
 			int i = 0, j = 0, k = 0;
 			while (line != null)
