@@ -28,6 +28,8 @@ https://stackoverflow.com/questions/16956720/how-to-create-an-2d-arraylist-in-ja
 remove quotation marks of a string
 https://stackoverflow.com/questions/2608665/how-can-i-trim-beginning-and-ending-double-quotes-from-a-string
 
+Oracle docs 
+https://docs.oracle.com/javase/8/docs/api/java/lang/String.html#split-java.lang.String-int-
 
 1.- ArrayList de ArrayList
 2.- Usando Queue encontrar champs más baneados (teambans.csv)
