@@ -2,7 +2,7 @@ public class tarea {
     public static void main(String[] args) {
         int arr[] = {23,4,5,8,231,2,3};
         
-        System.out.println(algoc(20,4));
+        System.out.println(algoc(11587,1187));
     }
     static void print(int arr[]){
         for(int i = 0; i < arr.length; i++){
@@ -71,6 +71,7 @@ public class tarea {
     }
 
     static int algoc(int a, int b){
+        System.out.println("uwu");
         if (b == 0) return a;
         return algoc(b, a%b);
     }

@@ -111,14 +111,14 @@ static int solution1(int[] arr, int n) {
 	return sum_n;							//O(1)
 }
 \end{lstlisting}
-Se determina el valor de la sumatoria en O(1). Se le resta cada elemento ingresado O(n) lo que queda corresponde al número faltante.
+Se determina el valor de la sumatoria en O(1). Se le resta cada elemento ingresado, lo que queda corresponde al número faltante. Complejidad $O(N)$.
 
 \begin{lstlisting}[label={list:second},caption=Solución 2.]
 static int solution2(int[] arr, int n) {
 	boolean flag = false;
 	int num_faltante = 0;
-	for(int  i = 1; i < n; ++i) {
-		for(int j = 0; j < n; ++j) {
+	for(int  i = 1; i < n; ++i) {			//O(n)
+		for(int j = 0; j < n; ++j) {		//O(N)
 			if(arr[j] == i){
 				flag = true;
 				break;
@@ -151,17 +151,17 @@ static int solution3(int[] arr, int n){
 \end{lstlisting}
 Este código tiene complejidad $O(N)$, debido a que son 2 bucles separados. El algoritmo consiste en recorrer el array agregando los números en él como posiciones en un array de booleanos, luego devuelve la posición donde es falso, siendo este el número faltante.
 
-\begin{lstlisting}[label={list:fourth},caption=Solución Diagnóstico.]
+\begin{lstlisting}[label={list:fourth},caption=Solución Tarea Diagnóstico.]
 static void solution(){
 	Scanner scan = new Scanner(System.in);
 	int N = scan.nextInt();	
 	int sumaN = 0;
 	int sumaX = 0;
-	for(int i = 1; i < N+1; i++) {
+	for(int i = 1; i < N+1; i++) {			//O(N)
 		sumaN += i;
 	}
 	int x;
-	for(int i = 0; i < N-1; i++) {
+	for(int i = 0; i < N-1; i++) {			//O(N)
 		x = scan.nextInt();
 		sumaX += x;
 	}
@@ -175,36 +175,163 @@ Consiste en tener el resultado de la sumatoria de 1 hasta N, y luego restarle la
 Se puede optimizar quitando un $O(N)$ al cambiar el primer for por la formula de sumatoria, y en vez de sumar cada número, restarlos a la sumatoria. Quedaría igual a la solución 1.
 
 \pagebreak
+
 \section*{Daño recibido por el mago (El mago y los dragones)}
 
 \begin{lstlisting}[label={list:first},caption=Solución 1 y Diagnóstico.]
 static int solution1(int ps[], int dps[], int n) {
 	int sum = 0;
 		dps_sum = 0;
-	for(int i = 0; i < n; ++i)
+	for(int i = 0; i < n; ++i) 			//O(N)
 		dps_sum += dps[i];
-	for(int i = 0; i < n; ++i){
+	for(int i = 0; i < n; ++i){			//O(N)
 		sum += (dps_sum * ps[i]);
 		dps_sum -= dps[i];
 	}
 	return sum;
 }
 \end{lstlisting}
-Mi código es exactamente igual a este, la única diferencia son los nombres de variables, los cuales corresponden a los getDPS, getPS, etc..., por lo que no veo conveniente colocarlo aquí.
- La complejidad es $O(N)$, porque son 2 for loops separados.
 
-Consiste en guardar el daño bruto que hacen los dragones vivos en cada turno. Luego se suma el daño bruto multiplicado por la vida de cada dragón, ya que mientras vive hace dmg cada turno. Al morir un dragón no se le considera más, por lo que su dps es borrado del daño bruto. Finalmente se retorna el daño que recibe el mago.
+ La complejidad es $O(N)$ en el peor caso, porque son 2 for loops separados.
+ 
+ Consiste en guardar el daño bruto que hacen los dragones vivos en cada turno. Luego se suma el daño bruto multiplicado por la vida de cada dragón, ya que mientras vive hace dmg cada turno. Al morir un dragón no se le considera más, por lo que su dps es borrado del daño bruto. Finalmente se retorna el daño que recibe el mago.
 
 
-\begin{lstlisting}[label={list:second},caption=Solución 1.]
+
+
+\begin{lstlisting}[label={list:second},caption=Solución 2.]
 static int solution1(int ps[], int dps[], int n) {
 	int sum = 0;
-	for(int i = 0; i < n; ++i)
-		for(int j = i; j < n; ++j)
+	for(int i = 0; i < n; ++i)				
+		for(int j = i; j < n; ++j)		//O(N^2)
 			sum += (dps[j] * ps[i]);
 	return sum;
 }
 \end{lstlisting}
 Este code tiene complejidad $O(N^{2})$ ya que por cada dragón, recorre todos los dragones. Se suma por cada dragón el dps de cada dragón por los ps del dragón.
+
+\pagebreak
+\begin{lstlisting}[label={list:first},caption=Solución 1 y Diagnóstico.]
+
+static int dmgRecibido(Dragon[] dragones, int N){
+    int totalDmg = 0;
+    int received = 0;
+    for(int i = 0; i < N; i++){
+        totalDmg += dragones[i].getDPS();
+    }
+    for(int i = 0; i < N; i++){
+        received += (totalDmg * dragones[i].getPS());
+        totalDmg = totalDmg - dragones[i].getDPS();
+    }
+    return received;
+}
+\end{lstlisting}
+Mi código es exactamente igual a la solución 1, la única diferencia son los nombres de variables.
+
+
+
+\section*{Unos y Ceros}
+\begin{lstlisting}[label={list:second},caption=Solución 1.]
+static void recursive(char[] str, int index) {
+	if (index == str.length) {
+		System.out.println(str);
+		return;
+	}
+	if (str[index] == '?') {
+		str[index] = '0';
+		recursive(str, index + 1);
+		str[index] = '1';
+		recursive(str, index + 1);
+		str[index] = '?';	
+	}
+	else{
+		recursive(str, index + 1);
+	}
+}
+\end{lstlisting}
+Este algoritmo en cada llamada recursiva revisa una posición del array, cuando encuentra un '?' se llama a si misma remplazando el signo por un '0' o '1' y dandole a esos llamados la siguiente posición (index+1). Se termina cuando llega al final del array.
+
+En el peor caso se tiene un string muy grande compuesto de '?' solamente, donde se imprimen y retornan al llegar a su ultimo nivel (nivel del arbol que se forma), por lo que la complejidad debería ser $Log(N)$.
+
+
+\pagebreak
+\begin{lstlisting}[label={list:second},caption=Solución Tarea 1.]
+static int bin(String s, String fin, int i) {
+	if(i == s.length()) {
+		System.out.println(fin);
+		return;
+	}
+	while(s.charAt(i) != '?') {
+		fin += s.charAt(i);
+		i++;
+	}
+	bin(s, fin+'0', i+1);
+	bin(s, fin+'1', i+1);
+}
+\end{lstlisting}
+
+El código que implementé consiste en pasar 2 string, el binario incompleto y un string vacío para almacenar el resultado. A diferencia del código anterior, este algoritmo salta las llamadas recursivas cuando no hay un '?' usando un while, lo cual debe haber aumentado la complejidad. 
+
+Cuando es un string de sólo '?' la complejidad debería ser $Log(N)$, igual que el codigo propuesto anteriormente. Creo que el peor caso sería intercalando '?' con 1 y 0, porque entraría al while cuando no es '?' y llamaría recursividad cuando es. Por lo que entonces en el peor caso (que podría ser el average) se tiene $NLog(N)$, siendo $N$ el correspondiente al while.
+
+\section*{Algoritmo a}
+
+\begin{lstlisting}[label={list:second},caption=Algoritmo a.]
+static void algoa(int arr[]) {
+		int n = arr.length;
+		for(int i = 0; i < n-1; i++) {
+			int min_idx = i;
+			for(int j = i+1; j < n; j++)
+				if(arr[j] < arr[min_idx]) min_idx = j;
+			int temp = arr[min_idx];
+			arr[min_idx] = arr[i];
+			arr[i] = temp;
+		}
+}
+\end{lstlisting}
+Este algoritmo ordena números en forma creciente, para esto usa bucles anidados. Se busca la posición del menor elemento y luego se intercambia en la primera posición del array, esto se repite hasta que el array queda ordenado.
+
+Tiene complejidad $O(N^{2})$
+
+
+\section*{Algoritmo b}
+\begin{lstlisting}[label={list:second},caption=Algoritmo b.]
+static void algo(int[] array, int n) {
+	int i, j, size_table;
+    //int max = ~0, min = -(~0);
+    int max = -999999999;
+    int min = 999999999;
+    for(i = 0; i < n; ++i) {
+        if (max < array[i]) max = array[i];
+        if (min > array[i]) min = array[i];
+    }
+    size_table = max - min + 1;
+    int[] table = new int[size_table];
+    for(i = 0; i < n; ++i)
+        ++table[array[i] - min];
+    for(i = 0, j = 0; i < size_table; ++i) {
+        if ((table[i]--) > 0){ 
+            array[j] = (i + min);
+            j++;
+        }
+    }
+}
+\end{lstlisting}
+Este código también ordena números de forma creciente, siendo mucho más eficiente. Primero busca el máx y el min en el array, usándolos para hacer un rango correspondiente al tamaño de un nuevo array "table". Las posiciones de table corresponden al valor numérico, y estas son devueltas en orden como número en el array inicial.
+
+Posee $O(N)$ de complejidad, ya que consiste en recorrer el array de manera lineal.
+
+\pagebreak
+
+\section*{Euclidean Algorithm}
+\begin{lstlisting}[label={list:second},caption=Algoritmo c.]
+static int algoc(int a, int b){
+	if (b == 0) return a;
+    return algoc(b, a%b);
+}
+\end{lstlisting}
+Este algoritmo busca el máximo común divisor entre a y b, es conocido como el "Euclidean Algorithm", consiste en llamados recursivos donde se obtiene el módulo de a entre b. En palabras más simples, a es dividido por b manteniendo de resultado enteros, si no se puede obtener un entero a pasa a ser el divisor y b el resto. Se sale de la recursividad cuando es encontrado un divisor de ambos números.
+
+La complejidad es $O(Log(N))$ ya que es dividido en cada llamada recursiva, y el peor caso es cuando a y b son números primos muy grandes.
 
 \end{document}
