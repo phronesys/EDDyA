@@ -26,16 +26,13 @@ class Solution{
     {
         Arrays.sort(dragones); // e.e merge sort
     }
-    static int dañoRecibido(Dragon[] dragones, int N)
-    {
+    static int dañoRecibido(Dragon[] dragones, int N){
         int totalDmg = 0;
         int received = 0;
         for(int i = 0; i < N; i++){
             totalDmg += dragones[i].getDPS();
         }
-        
-        for(int i = 0; i < N; i++)
-        {
+        for(int i = 0; i < N; i++){
             received += (totalDmg * dragones[i].getPS());
             totalDmg = totalDmg - dragones[i].getDPS();
         }
