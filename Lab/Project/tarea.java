@@ -17,7 +17,7 @@ public class tarea {
         // Se usa try - catch en caso de errores
         try {
             // reader
-            reader = new BufferedReader(new FileReader("teambans.csv"));
+            reader = new BufferedReader(new FileReader("./csv/ConComillas/matches.csv"));
             String line = reader.readLine();
 
             while(line != null)
