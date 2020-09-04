@@ -11,6 +11,7 @@ public class main {
         String csvString = "./csv/ConComillas/matches.csv";
         parser(csvString, parsed);
         //System.out.println(parsed);
+        parsed.get(0).set(0, "first");
         for(int i = 0; i < parsed.size(); i++){
             for (int j = 0; j < parsed.get(i).size(); j++){
                 System.out.print(parsed.get(i).get(j));
