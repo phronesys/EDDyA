@@ -98,13 +98,4 @@ public class main {
             error.printStackTrace();
         }
     }
-    
-    // todavía no la usaré
-    static ArrayList<String> cutQuotes(String[] items, int size){
-        ArrayList<String> lines = new ArrayList<String>();
-        for(int i = 0; i < size; i++){
-            lines.add(items[i].substring(1,items[i].length()-1));
-        }
-        return lines;
-    }
 }
