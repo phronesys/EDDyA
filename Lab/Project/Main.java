@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 
+
 public class Main {
     public static void main(String[] args) {
         String matches = "./matches.csv",
@@ -48,22 +49,44 @@ public class Main {
         writer(stat1, parsed4);
         //writer(stat2, parsed5);  
         writer(tmban, parsed6);
-        writer(tstat, parsed7);  */
+        writer(tstat, parsed7);  
         // stats2.csv genera el siguiente error
         // Exception in thread "main" java.lang.IllegalArgumentException: 0 > -7
+
+        */
+
         //Pair<Integer, String> pair = new Pair<>();
-        
+        // Objetivo:
+        //  añadir pares a un queue, 6 pares (champid y banturn)
+
+        queue current_matchid = new queue();
+        //esto recorre cada linea del csv
         for(int i = 1; i < parsed6.size(); i++){
+            
+            String matchid = parsed6.get(i).get(0);
             String banturn = parsed6.get(i).get(3);
             String champion = parsed6.get(i).get(2);
-            banturn = banturn.substring(1, banturn.length() - 1);
-            champion = champion.substring(1, champion.length() - 1);
-            int banTurn = Integer.parseInt(banturn);
-            //System.out.println(banTurn + " uwu " + champion);
-            /* queue matchuwu = new queue();
+            int imatchid = Integer.parseInt(noQuotes(matchid));
+            int ibanturn = Integer.parseInt(noQuotes(banturn));
+            int ichampion = Integer.parseInt(noQuotes(champion));
+            int[] ban_champ = new int[2];
+            ban_champ[0] = ibanturn;
+            ban_champ[1] = ichampion;
 
-            matchuwu.add(); */
+
+            // reinicia el queue pasando los items ordenados a un stack?
+            if(matchid != parsed6.get(i-1).get(0)){
+                while(!current_matchid.isEmpty()){
+                    // lanzar items ordenados a un archivo lol
+                }
+                current_matchid.enqueue(imatchid);
+            } else {
+                 
+                current_matchid.enqueue(ban_champ);
+            } 
+            
         }  
+        
     }
     static void writer(String name, ArrayList<ArrayList<String>> parsed){
         int i = 0;
@@ -105,7 +128,7 @@ public class Main {
             error.printStackTrace();
         }
     }
-    static void parser2(String fileLocation, ArrayList<ArrayList<String>> parsed){
+    static void parserUsingSplit(String fileLocation, ArrayList<ArrayList<String>> parsed){
         BufferedReader reader;
         try {
             // inicializamos reader con el string correspondiente al archivo
@@ -113,10 +136,10 @@ public class Main {
             String line;
             while(( line = reader.readLine()) != null) {
                 // items separados por comas
-                StringTokenizer tokenizer = new StringTokenizer(line, ",");
+                String splited[] = line.split(",", -1);
                 ArrayList<String> lines = new ArrayList<String>();
-                while(tokenizer.hasMoreTokens()) {
-                    lines.add(tokenizer.nextToken());
+                for(int i = 0; i < splited.length; i++){
+                    lines.add(splited[i]);
                 }
                 parsed.add(lines);
             }
@@ -124,5 +147,8 @@ public class Main {
         } catch (IOException error) {
             error.printStackTrace();
         }
+    }
+    static String noQuotes(String item){
+        return item.substring(1, item.length() - 1);
     }
 }
