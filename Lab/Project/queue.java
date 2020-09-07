@@ -1,106 +1,33 @@
-/* 
-    Queue implementation suing a linked list
-    Methods:
-        .dequeue (remove peek)
-        .enqueue (push)
-        .peek (look at the last)
-        .printQueue
-*/
-import java.util.*;
+import java.util.ArrayList;
+public class queue {
+    private ArrayList items;
 
-public class queue{
-
-    public static void main(String[] args)
+    public queue()
     {
-        Scanner scan = new Scanner(System.in);
-
-        linkedQueue test = new linkedQueue();
-        boolean on = true;
-        
-        do{
-            System.out.println("\n1.- Enqueue");
-            System.out.println("2.- Dequeue");
-            System.out.println("3.- Peek");
-            System.out.println("4.- Print Queue");
-            switch (scan.nextInt()) {
-                case 1:
-                    test.enqueue(scan.nextInt());
-                    break;
-                case 2:
-                    test.dequeue();
-                    break;
-                case 3:
-                    System.out.println(test.peek());    
-                    break;
-                case 4:
-                    test.printQueue();
-                    break;
-                default:
-                    break;
-            }
-        }while(on);
-        scan.close();
+        items = new ArrayList();
     }
 
-}
-
-class linkedQueue{
-    private class Node {
-        int data;
-        Node next;
-    }
-    //      last      first
-    // null<- 3 <- 2 <- 1 
-    Node first;
-    Node last;
-    linkedQueue() { this.first = this.last = null; }
-
-    public boolean isEmpty() { 
-        if (first == null ) 
-            return true;
-        else 
-            return false;
-    }
-    public int peek()
+    public Object peek()
     {
-        if (!isEmpty()) return first.data;
-        System.out.println("\nQueue empty");
-        return -1;
+        return items.get(items.size());
     }
-    public void enqueue(int x)
-    {
-        Node temp = new Node();
-        temp.data = x;
-        temp.next = null;
 
-        if (isEmpty()){
-            last = first = temp;
-        }else {
-            last.next = temp;
-            last = temp;
-        }
-    }
     public void dequeue()
     {
-        if (isEmpty()) {
-            System.out.println("\nQueue empty");
-            return;
+        if (!isEmpty()) {
+            items.remove(0);
+        } else {
+            System.out.println("Queue is already empty!!");
         }
-        Node temp = new Node();
-        temp = first;
-        first = first.next;
-        temp = null;
     }
-    public void printQueue()
+
+    public void enqueue(Object in)
     {
-        Node temp = new Node();
-        temp = first;
-        while(temp != null)
-        {
-            System.out.printf("%d ->", temp.data);
-            temp = temp.next;
-        }
+        items.add(in);   
+    }
+    
+    public Boolean isEmpty()
+    {
+        return (items.size() == 0);
     }
 }
-
-

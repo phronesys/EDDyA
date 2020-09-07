@@ -31,6 +31,12 @@ https://stackoverflow.com/questions/2608665/how-can-i-trim-beginning-and-ending-
 Oracle docs 
 https://docs.oracle.com/javase/8/docs/api/java/lang/String.html#split-java.lang.String-int-
 
+StringTokenizer
+https://javarevisited.blogspot.com/2015/12/how-to-split-comma-separated-string-in-java-example.html
+
+Memory Heap Solution(Linux)
+https://stackoverflow.com/questions/1565388/increase-heap-size-in-java
+
 1.- ArrayList de ArrayList
 2.- Usando Queue encontrar champs más baneados (teambans.csv)
 3.- Invertir orden usando Stack junto a los Queue's 

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
+
 public class main {
     public static void main(String[] args) {
         String matches = "./matches.csv",
@@ -22,6 +23,7 @@ public class main {
                 stat2 = "outStats2.csv",
                 tmban = "outTeambans.csv",
                 tstat = "outTeamstats.csv";
+
         System.out.println("parsing every file");
         ArrayList<ArrayList<String>> parsed1 = new ArrayList<ArrayList<String>>();
         parser(matches, parsed1);
@@ -39,10 +41,12 @@ public class main {
         parser(stats1, parsed4);
         writer(stat1, parsed4);
         System.out.println("parsed 4");
-        ArrayList<ArrayList<String>> parsed5 = new ArrayList<ArrayList<String>>();
+        // este csv me da un error que no encuentro en ningun lado
+        // Exception in thread "main" java.lang.IllegalArgumentException: 0 > -7
+        /* ArrayList<ArrayList<String>> parsed5 = new ArrayList<ArrayList<String>>();
         parser(stats2, parsed5);
         writer(stat2, parsed5);  
-        System.out.println("parsed 5");
+        System.out.println("parsed 5"); */
         ArrayList<ArrayList<String>> parsed6 = new ArrayList<ArrayList<String>>();
         parser(teambans, parsed6);
         writer(tmban, parsed6);
