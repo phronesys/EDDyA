@@ -1,0 +1,24 @@
+    1. (15 ptos) Implemente un código en Java que vuelque los datos de todos los archivos del dataset indicado previamente en arreglos bidimensionales (ArrayList de ArrayLists). Deberá demostrar posteriormente que el dataset fue correctamente volcado haciendo una impresión de los elementos incluidos a nuevos archivos .csv de salida.
+    2. (10 ptos) Implemente las estructuras de datos cola y pila.
+    3. (15 ptos) 
+Procese los datos referentes al archivo teambans.csv usando colas de tamaño 6 para cada valor de matchid. 
+    4. Para ello, ingrese pares (banturn, championid) en el orden de banturn a la cola. 
+    5. Debe usar una cola por cada matchid. 
+    6. Luego, demuestre el procesamiento imprimiendo a un archivo el siguiente formato de salida:
+<matchid>: <championid1>,<championid2>,<championid3>,<championid4>,<championid5>,<championid6>  
+    7. (10 ptos) Invierta el orden de los championid de la parte anterior usando una pila. Demuestre la operación imprimiendo a un archivo el siguiente formato de salida:
+<matchid>: <championid6>,<championid5>,<championid4>,<championid3>,<championid2>,<championid1>
+    8. (10 ptos) Redacte un breve informe en que describa y justifique su solución. Recuerde citar todas las fuentes desde donde obtuvo códigos y/o información para el desarrollo.
+
+NOTA: Debe implementar las estructuras de datos solicitadas, a excepción del ArrayList, que puede utilizar la implementación nativa de Java.
+
+
+Condiciones de entrega
+
+Se indican las siguientes condiciones para la entrega de la tarea:
+    • La tarea se desarrolla en parejas. Los códigos serán sometidos a comprobación automática de plagio.
+    • Los códigos fuentes deben estar escritos en Java.  Es requisito indispensable que los códigos compilen y ejecuten sin cambios. Para ello, suponga que los archivos de datos están en el mismo directorio que sus códigos fuentes. De no cumplirse esta condición, el código correspondiente será evaluado con nota mínima de inmediato. Se le exige además que únicamente utilice librerías estándar de Java.
+    • El informe estará en formato PDF.
+    • Deberá indicar al profesor la conformación de los grupos a más tardar el día Martes 25 de Agosto de 2020 al mail martin.gutierrez@mail.udp.cl.
+    • Todos los archivos deben colocarse en un único archivo .zip con nombre <GrupoX>.zip
+    • La tarea se entregará vía el sitio Canvas de la sección. La fecha y hora límite para la entrega son el día 8 de Septiembre a las 23:59. Cualquier entrega atrasada no se considerará y será calificada con la nota mínima de inmediato.
