@@ -51,9 +51,19 @@ public class Main {
         writer(tstat, parsed7);  */
         // stats2.csv genera el siguiente error
         // Exception in thread "main" java.lang.IllegalArgumentException: 0 > -7
-        for(int i = 0; i < parsed6.size(); i++){
-            System.out.println(parsed6.get(i).get(3));
-        }
+        //Pair<Integer, String> pair = new Pair<>();
+        
+        for(int i = 1; i < parsed6.size(); i++){
+            String banturn = parsed6.get(i).get(3);
+            String champion = parsed6.get(i).get(2);
+            banturn = banturn.substring(1, banturn.length() - 1);
+            champion = champion.substring(1, champion.length() - 1);
+            int banTurn = Integer.parseInt(banturn);
+            //System.out.println(banTurn + " uwu " + champion);
+            /* queue matchuwu = new queue();
+
+            matchuwu.add(); */
+        } 
     }
     static void writer(String name, ArrayList<ArrayList<String>> parsed){
         int i = 0;
@@ -63,7 +73,7 @@ public class Main {
             // cada arraylist de la matriz
             for(ArrayList items : parsed) 
             {
-                for(i = 0; i < items.size() - 1; i++){
+                for(i = 1; i < items.size() - 1; i++){
                     writer.write(items.get(i).toString());
                     writer.write(",");
                 }
