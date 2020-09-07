@@ -7,9 +7,9 @@ public class queue {
         items = new ArrayList();
     }
 
-    public Object peek()
+    public Object front()
     {
-        return items.get(items.size());
+        return items.get(0);
     }
 
     public void dequeue()
@@ -25,7 +25,15 @@ public class queue {
     {
         items.add(in);   
     }
-    
+    public void printQueue()
+    {
+        if(!isEmpty())
+        {
+            for(int i = 0; i < items.size(); i++){
+                System.out.print(items.get(i));
+            }
+        }
+    }
     public Boolean isEmpty()
     {
         return (items.size() == 0);

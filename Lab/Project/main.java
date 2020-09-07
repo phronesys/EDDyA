@@ -13,56 +13,43 @@ public class main {
                 champs = "./champs.csv",
                 participants = "./participants.csv",
                 stats1 = "./stats1.csv",
-                stats2 = "./stats2.csv",
+                //stats2 = "./stats2.csv",
                 teambans = "./teambans.csv",
                 teamstats = "./teamstats.csv",
                 match = "outMatches.csv",
                 champ = "outChamps.csv",
                 parti = "outParticipants.csv",
                 stat1 = "outStats1.csv",
-                stat2 = "outStats2.csv",
+                //stat2 = "outStats2.csv",
                 tmban = "outTeambans.csv",
                 tstat = "outTeamstats.csv";
 
         System.out.println("parsing every file");
         ArrayList<ArrayList<String>> parsed1 = new ArrayList<ArrayList<String>>();
-        parser(matches, parsed1);
-        writer(match, parsed1);
-        System.out.println("parsed 1");
         ArrayList<ArrayList<String>> parsed2 = new ArrayList<ArrayList<String>>();
-        parser(champs, parsed2);
-        writer(champ, parsed2);
-        System.out.println("parsed 2");
         ArrayList<ArrayList<String>> parsed3 = new ArrayList<ArrayList<String>>();
-        parser(participants, parsed3);
-        writer(parti, parsed3); 
-        System.out.println("parsed 3");
         ArrayList<ArrayList<String>> parsed4 = new ArrayList<ArrayList<String>>();
-        parser(stats1, parsed4);
-        writer(stat1, parsed4);
-        System.out.println("parsed 4");
-        // este csv me da un error que no encuentro en ningun lado
-        // Exception in thread "main" java.lang.IllegalArgumentException: 0 > -7
-        /* ArrayList<ArrayList<String>> parsed5 = new ArrayList<ArrayList<String>>();
-        parser(stats2, parsed5);
-        writer(stat2, parsed5);  
-        System.out.println("parsed 5"); */
+        //ArrayList<ArrayList<String>> parsed5 = new ArrayList<ArrayList<String>>();
         ArrayList<ArrayList<String>> parsed6 = new ArrayList<ArrayList<String>>();
-        parser(teambans, parsed6);
-        writer(tmban, parsed6);
-        System.out.println("parsed 6");
         ArrayList<ArrayList<String>> parsed7 = new ArrayList<ArrayList<String>>();
+
+        parser(matches, parsed1);
+        parser(champs, parsed2);
+        parser(participants, parsed3);
+        parser(stats1, parsed4);
+        //parser(stats2, parsed5); 
+        parser(teambans, parsed6);
         parser(teamstats, parsed7);
+
+        writer(match, parsed1);
+        writer(champ, parsed2);
+        writer(parti, parsed3); 
+        writer(stat1, parsed4);
+        //writer(stat2, parsed5);  
+        writer(tmban, parsed6);
         writer(tstat, parsed7); 
-        System.out.println("parsed 7");
-    }
-    static void print(ArrayList<ArrayList<String>> parsed){
-        for(int i = 0; i < parsed.size(); i++){
-            for (int j = 0; j < parsed.get(i).size(); j++){
-                System.out.print(parsed.get(i).get(j));
-            }
-            System.out.println();
-        }
+        // stats2.csv genera el siguiente error
+        // Exception in thread "main" java.lang.IllegalArgumentException: 0 > -7
     }
     static void writer(String name, ArrayList<ArrayList<String>> parsed){
         int i = 0;
@@ -72,8 +59,6 @@ public class main {
             // cada arraylist de la matriz
             for(ArrayList items : parsed) 
             {
-                // cada string en el arraylist
-                // el -1 es para que el ultimo se añada sin una "," extra
                 for(i = 0; i < items.size() - 1; i++){
                     writer.write(items.get(i).toString());
                     writer.write(",");
