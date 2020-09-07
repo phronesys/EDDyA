@@ -30,8 +30,9 @@ public class queue {
         if(!isEmpty())
         {
             for(int i = 0; i < items.size(); i++){
-                System.out.print(items.get(i));
+                System.out.println(items.get(i));
             }
+            
         }
     }
     public Boolean isEmpty()
