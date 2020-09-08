@@ -70,6 +70,7 @@ public class App {
         queue ordenado = new queue();
         //queue desordenado = new queue();
         ArrayList<List<Integer>> pares = new ArrayList<List<Integer>>();
+        
         for(int i = 1; i < parsed6.size(); i++){
             
             String matchid = parsed6.get(i).get(0);
@@ -94,6 +95,7 @@ public class App {
                     // aca debería llamar una función que ordene lo que no está ordenado
                     fixThis(pares);
                     // pasa lo ordenado a ordenado
+                    
                 }
                 ordenado = new queue();
                 System.out.println("match: " + imatchid);
@@ -118,20 +120,29 @@ public class App {
         }  
         
     }
-    static void fixThis(ArrayList<List<Integer>> ordenar){
+    static void fixThis(ArrayList<List<Integer>> desorden){
         //int[] array = new int[6];
-        ArrayList<Integer> array = new ArrayList<Integer>();
+        
+        ArrayList<Integer> orden = new ArrayList<Integer>();
+        //System.out.println(desorden.size()); = 5
+
+        // Insertion sort
+        // banturn
+        // desorden.get(i).get(1) champid
+        // 3 5 2 4 6 buscamos el menor
+        // encuentra 2
+        // orden.add(desorden.get(i).get(1))
+        // 3 4 
+        int x = 2;
+        int n = desorden.size();
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < n; j++){
+                if(desorden.get(x).get(0)  == x)
+            }
+        }
         
         
-
-        for(List items : ordenar){
-            array.add((Integer) items.get(0));
-        }
-        Collections.sort(array);
-        for(int i = 0; i < array.size(); i++){
-            
-        }
-
+        desorden.clear();
     }
     static void writer(String name, ArrayList<ArrayList<String>> parsed){
         int i = 0;
