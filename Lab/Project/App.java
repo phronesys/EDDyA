@@ -4,8 +4,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.StringTokenizer;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Collections;
 
+// import javafx.util.Pair; no sirve por que es de java 7, ni en java 8 se puede usar XD
 
 
 public class App {
@@ -59,36 +64,74 @@ public class App {
         // Objetivo:
         //  añadir pares a un queue, 6 pares (champid y banturn)
 
-        queue current_matchid = new queue();
+        int currentmatchid = 0;
         //esto recorre cada linea del csv
         System.out.println("Entrando a la parte de los queues");
+        queue ordenado = new queue();
+        //queue desordenado = new queue();
+        ArrayList<List<Integer>> pares = new ArrayList<List<Integer>>();
         for(int i = 1; i < parsed6.size(); i++){
             
             String matchid = parsed6.get(i).get(0);
             String banturn = parsed6.get(i).get(3);
             String champion = parsed6.get(i).get(2);
-            int imatchid = Integer.parseInt(noQuotes(matchid));
-            int ibanturn = Integer.parseInt(noQuotes(banturn));
-            int ichampion = Integer.parseInt(noQuotes(champion));
-            int[] ban_champ = new int[2];
-            ban_champ[0] = ibanturn;
-            ban_champ[1] = ichampion;
+            
+            matchid = noQuotes(matchid);
+            banturn = noQuotes(banturn);
+            champion = noQuotes(champion);
+            
+            int imatchid = Integer.parseInt(matchid);
+            int ibanturn = Integer.parseInt(banturn);
+            int ichampion = Integer.parseInt(champion);
+            
+            List<Integer> pair = Arrays.asList(ibanturn, ichampion);
+            
 
-
-            // reinicia el queue pasando los items ordenados a un stack?
-            if(matchid != parsed6.get(i-1).get(0)){
-                while(!current_matchid.isEmpty()){
-                    // lanzar items ordenados a un archivo lol
-                    current_matchid.dequeue();
+            if(currentmatchid != imatchid){
+                if(!ordenado.isEmpty()){
+                    System.out.println("uwu");
+                    // esto se ejecuta cuando cambia al siguiente matchid
+                    // aca debería llamar una función que ordene lo que no está ordenado
+                    fixThis(pares);
+                    // pasa lo ordenado a ordenado
                 }
-                current_matchid.enqueue(imatchid);
+                ordenado = new queue();
+                System.out.println("match: " + imatchid);
+                currentmatchid = imatchid;
+                // add queue currentmatchid 
+                ordenado.enqueue(currentmatchid);
+                System.out.println(pair.get(0) + " " + pair.get(1));
+                ordenado.enqueue(pair.get(1));
+                // el primer item sería el 1 , por lo que se debería agregar
+                // de una al queue
+            
+                
             } else {
-                 
-                current_matchid.enqueue(ban_champ);
-            } 
-            current_matchid.printQueue();
+                System.out.println(pair.get(0) + " " + pair.get(1));
+                // entra pos 3 5 2 4 6
+                pares.add(pair);
+                
+
+            }
+            
+            
         }  
         
+    }
+    static void fixThis(ArrayList<List<Integer>> ordenar){
+        //int[] array = new int[6];
+        ArrayList<Integer> array = new ArrayList<Integer>();
+        
+        
+
+        for(List items : ordenar){
+            array.add((Integer) items.get(0));
+        }
+        Collections.sort(array);
+        for(int i = 0; i < array.size(); i++){
+            
+        }
+
     }
     static void writer(String name, ArrayList<ArrayList<String>> parsed){
         int i = 0;

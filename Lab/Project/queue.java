@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 public class queue {
-    private ArrayList items;
+    public ArrayList items;
 
     public queue()
     {
