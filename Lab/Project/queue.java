@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 public class queue {
     public ArrayList items;
+    public queue(queue copy){
+        ArrayList copia = new ArrayList(copy.items);
+        this.items = copia;
+    }
 
     public queue()
     {
