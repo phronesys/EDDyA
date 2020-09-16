@@ -1,0 +1,7 @@
+/**
+ * linkedlist
+ */
+public class linkedlist {
+
+    
+}
