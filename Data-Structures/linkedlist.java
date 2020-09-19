@@ -6,11 +6,17 @@ class LinkedList {
     }
     Node head; // cabeza de la lista
     LinkedList(){ this.head = null; }
-    public void add(int dat){
+    /* public void add(int dat){
         Node temp = new Node(); // primero creo un nuevo nodo
         temp.data = dat;
         temp.next = head;
         head = temp;
+    } */
+    public void add(int dat){
+        Node temp = new Node();
+        temp.data = dat;
+        temp.next = null;
+        head.next = temp;
     }
     public void remove(){
         if(isEmpty()){ System.out.println("\n Ya está vacio");
@@ -34,9 +40,22 @@ class LinkedList {
                 System.out.print(temp.data + " ");
                 temp = temp.next;
             }
+            System.out.println();
         } else {
             System.out.println("\nLista vacia...");
         }
+    }
+    public int get(int index){
+        Node temp = null;
+        if (index < 0) return -1;
+        if(!isEmpty()){
+            temp = head;
+            for(int i = 0; i < index; i++) {
+                if(temp.next == null) return -1;
+                temp = temp.next;
+            }
+        }
+        return temp.data;
     }
 
 }
@@ -52,12 +71,6 @@ public class linkedlist {
         a.print();
         a.add(5);
         a.print();
-        a.clear();
-        a.add(1);
-        a.add(123);
-        a.add(1);
-        a.print();
-        a.remove();
-        a.print();
+        System.out.println(a.get(4));
     }
 }
