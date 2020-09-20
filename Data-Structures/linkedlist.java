@@ -6,14 +6,14 @@ class LinkedList {
     }
     Node head; // cabeza de la lista
     LinkedList(){ this.head = null; }
-    /* public void add(int dat){ // reversed list? xd
+    public void add(int dat){ 
         Node temp = new Node(); // primero creo un nuevo nodo
         temp.data = dat;
         temp.next = head;
         head = temp;
-    } */ 
+    } 
     
-    public void add(int dat){
+    /* public void add(int dat){
         if(!isEmpty()){
             Node temp = new Node();
             temp.data = dat;
@@ -26,7 +26,7 @@ class LinkedList {
             temp.next = null;
             head = temp;
         }
-    }
+    } */
     public void print2(){
         
     }
