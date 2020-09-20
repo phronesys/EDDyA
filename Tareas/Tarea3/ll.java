@@ -1,5 +1,18 @@
+import java.io.*;
 import java.util.*;
 
+class Solution {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        ll lista = new ll();
+        int N = scan.nextInt();
+        for(int i = 0; i < N; i++){
+            lista.add(scan.nextInt());
+        }
+        lista.printLLReversed();
+    }
+}
 public class ll {
     private class Node{
         int data;
@@ -53,14 +66,3 @@ public class ll {
     }
     
 }
-
-/* public static void main(String[] args) {
-        ll lista = new ll();
-        lista.add(1);
-        lista.add(2);
-        lista.add(3);
-        lista.add(4);
-        lista.add(5);
-        lista.printLL();
-        lista.printLLReversed();
-    } */
