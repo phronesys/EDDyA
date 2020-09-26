@@ -1,3 +1,9 @@
+/** 
+ * a simple array printer
+ * I want to make it graphical
+ * 
+ */
+
 public class drawer{
     public static void printArray(int arr[]){
         int n = arr.length;
