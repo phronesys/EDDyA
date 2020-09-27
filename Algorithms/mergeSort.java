@@ -11,7 +11,7 @@
 public class mergeSort {
     public static void main(String[] args) {
         int[] a = {1, 10, 9, 7, 8, 5, 6, 4, 3, 2};
-        merge(a, 0, (a.length/2), a.length);
+        //merge(a, 0, (a.length/2), a.length);
         drawer.printArray(a);
     }
     // first subarray = arr[p..q]
