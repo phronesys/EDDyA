@@ -7,6 +7,8 @@
  * 
  * Time complexity of Merge Sort is O(nLogn) 
  * in all 3 cases (worst, average and best)
+ * 
+ * -Lo mejor para linkedlists
  */
 public class mergeSort {
     public static void main(String[] args) {
