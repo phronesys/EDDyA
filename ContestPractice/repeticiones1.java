@@ -26,7 +26,6 @@ public class repeticiones1 {
         }else{
             len = (b - a);
             divide(adn, b+1, end);
-            
         }
         // b-1 es la ultima pos del substring
         if(len > max) max = len;
