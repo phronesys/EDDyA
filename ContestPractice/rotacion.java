@@ -6,11 +6,18 @@ public class rotacion {
         Scanner scan = new Scanner(System.in);
         int N = scan.nextInt();
         int D = scan.nextInt();
-        
+        CircularList cl = new CircularList();
+
         for(int i = 0; i < N; i++){
             // añadirlo a una lista circular
-            CircularList cl = new CircularList();
+            
             cl.add(scan.nextInt());
+        }
+        if(D == N){
+            cl.display();
+        }else{
+            cl.rotateLeft(D);
+            cl.display();
         }
         
         scan.close();
@@ -27,9 +34,6 @@ class CircularList{
     }
     public Node head = null;
     public Node tail = null;
-    CircularList(){
-        this.length = 0;
-    }
     public void add(int data){
         Node newNode = new Node(data);
         if(head == null) {
@@ -54,9 +58,14 @@ class CircularList{
             System.out.println();
         }
     }
-    public void rotate(int n){
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < this.)
+    public void rotateLeft(int n){
+        Node temp;
+
+        if(head != null){
+            for(int i = 0; i < n; i++){
+                head = head.next;
+                tail = tail.next;
+            }
         }
     }
 }
