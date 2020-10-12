@@ -4,11 +4,6 @@
  * Estable
  */
 public class insertionSort {
-    public static void main(String[] args) {
-        int[] a = {1, 10, 9, 7, 8, 5, 6, 4, 3, 2};
-        InsertionSort(a);
-        drawer.printArray(a);
-    }
     public static void InsertionSort(int[] a)
     {
         int N = a.length;
