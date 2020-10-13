@@ -44,17 +44,36 @@ class BinaryTree {
     public boolean contains(int data) {
         return containsNode(root, data);
     }
-    private void printPreOrder(Node current){
-        if(current == null) { 
-            return; 
-        }
 
-        System.out.print(current.data + " ");
+    private void printPreOrder(Node current){
+        if(current == null) return;
+        System.out.print(current.data + " "); //pre order
         printPreOrder(current.left);
         printPreOrder(current.rigth);
     }
     public void preOrder(){
         printPreOrder(root);
+        System.out.println();
+    }
+    private void printInOrder(Node current){
+        if(current == null) return;
+        printInOrder(current.left);
+        System.out.print(current.data + " ");  //in order 
+        printInOrder(current.rigth);
+    }
+    public void inOrder(){
+        printInOrder(root);
+        System.out.println();
+    }
+    private void printPostOrder(Node current){
+        if (current == null) return;
+        printPostOrder(current.left);
+        printPostOrder(current.rigth);
+        System.out.print(current.data + " ");  //post order
+    }
+    public void postOrder(){ 
+        printPostOrder(root);
+        System.out.println();
     }
 }
 public class binaryTree {
@@ -72,5 +91,7 @@ public class binaryTree {
         else
             System.out.println("uwu"); 
         bt.preOrder();
+        bt.inOrder();
+        bt.postOrder();
     }
 }
