@@ -13,8 +13,7 @@ class Node{
         this.rigth = null;
     }
 }
-public class binaryTree {
-
+class BinaryTree {
     Node root;
     private Node addRecursive(Node current, int data)
     {
@@ -45,18 +44,33 @@ public class binaryTree {
     public boolean contains(int data) {
         return containsNode(root, data);
     }
+    private void printPreOrder(Node current){
+        if(current == null) { 
+            return; 
+        }
+
+        System.out.print(current.data + " ");
+        printPreOrder(current.left);
+        printPreOrder(current.rigth);
+    }
+    public void preOrder(){
+        printPreOrder(root);
+    }
+}
+public class binaryTree {
+
     public static void main(String[] args) {
-        binaryTree bt = new binaryTree();
-        bt.add(5);
-        bt.add(4);
-        bt.add(8);
-        bt.add(1);
-        bt.add(7);
+        BinaryTree bt = new BinaryTree();
         bt.add(3);
+        bt.add(4);
+        bt.add(1);
+        bt.add(6);
+        bt.add(2);
+        bt.add(5);
         if(bt.contains(9))
             System.out.println("ewe");
         else
             System.out.println("uwu"); 
-        
+        bt.preOrder();
     }
 }
