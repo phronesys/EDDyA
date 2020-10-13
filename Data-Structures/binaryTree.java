@@ -44,6 +44,14 @@ class BinaryTree {
     public boolean contains(int data) {
         return containsNode(root, data);
     }
+   /*  private Node deleteRecursive(Node current, int data)
+    {
+
+        return current;
+    }
+    public void delete(int data){
+        root = deleteRecursive(root, data);
+    } */
 
     private void printPreOrder(Node current){
         if(current == null) return;
