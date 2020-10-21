@@ -10,6 +10,7 @@ public class heapSort {
     public static void main(String[] args) {
         int[] A = {4,10,3,5,1};
         sort(A);
+        //drawer.printArray(A);
 
     }
     public static void sort(int A[])
