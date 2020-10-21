@@ -12,7 +12,7 @@
 
 public class quickSort {
     public static void QuickSort(int A[], int ini, int end){
-        drawer.printArray(A);
+        //drawer.printArray(A);
         if(ini < end){
             int pi = Partition(A, ini, end);
             QuickSort(A, ini, pi - 1);
