@@ -12,13 +12,14 @@ import java.util.*;
 public class volcado {
     public static void volcar() {
         BufferedReader reader;
-        BufferedWriter writer;
+        //BufferedWriter writer;
         //String[] filenames = {"./stats1.csv","./stats2.csv","./participants.csv","./champs.csv"};
         String[] filenames = {"./stats1.csv","./stats2.csv"}; // en ambos quiero 0 y 21
         ArrayList<tripleta> dataset = new ArrayList<tripleta>(); // matriz
-        String outfilename = "stats_out.csv";
+        /* String outfilename = "stats_out.csv"; */
         try
-        {   writer = new BufferedWriter(new FileWriter(outfilename, false));
+        {   
+            /* writer = new BufferedWriter(new FileWriter(outfilename, false)); */
             // lee los 2 stats por separado
             for(String fn : filenames){
                 reader = new BufferedReader(new FileReader(fn));
@@ -34,26 +35,27 @@ public class volcado {
                         tripleta par; 
                         row1[0] = row1[0].replace("\"","");     // id           
                         row1[21] = row1[21].replace("\"","");   // totdmgdealt
-                        par = new tripleta(row1[0], row1[21]);
+                        par = new tripleta(Integer.parseInt(row1[0]), Integer.parseInt(row1[21]));
                         dataset.add(par); // añadido el par que se necesita en este caso
                     } 
                     uwu = true;
                     line = reader.readLine();   // sig linea
                 }
-                for(tripleta x : dataset)
+                /* for(tripleta x : dataset)
                 {
                     writer.write(Integer.toString(x.getId()));
                     writer.write(",");
                     writer.write(Integer.toString(x.getDmg()));
                     writer.write("\n");
-                }
+                } */
                 reader.close();
                 
             }
-            writer.close();
+            /* writer.close(); */
         }catch(IOException e){
             e.printStackTrace();
         }
+        //heapSort.sort(dataset);
         
     }
 }
