@@ -3,6 +3,8 @@
  * Ordenamiento de cartas
  * Estable
  */
+
+import java.util.*;
 public class insertionSort {
     public static void InsertionSort(int[] a)
     {
@@ -17,5 +19,19 @@ public class insertionSort {
                 a[j-1] = temp;
             } 
         }
+    }
+    public static ArrayList<tripleta> insertionSortDec(ArrayList<tripleta> array)
+    {
+        for(int i = 1; i < array.size(); i++){
+            tripleta temp = array.get(i);
+            int j = i - 1;
+            while(j >= 0 && array.get(j).getDmg() < temp.getDmg())
+            {
+                array.set(j+1, array.get(j));
+                j = j - 1; 
+            }
+            array.set(j+1, temp);
+        }
+        return array;
     }
 }

@@ -12,14 +12,15 @@ import java.util.*;
 public class volcado {
     public static void volcar() {
         BufferedReader reader;
-        //BufferedWriter writer;
+        BufferedWriter writer;
         //String[] filenames = {"./stats1.csv","./stats2.csv","./participants.csv","./champs.csv"};
-        String[] filenames = {"./stats1.csv","./stats2.csv"}; // en ambos quiero 0 y 21
+    //    String[] filenames = {"./stats1.csv","./stats2.csv"}; // en ambos quiero 0 y 21
+        String[] filenames = {"./stats3.csv"};
         ArrayList<tripleta> dataset = new ArrayList<tripleta>(); // matriz
-        /* String outfilename = "stats_out.csv"; */
+        String outfilename = "stats_out.csv";
         try
         {   
-            /* writer = new BufferedWriter(new FileWriter(outfilename, false)); */
+            writer = new BufferedWriter(new FileWriter(outfilename, false)); 
             // lee los 2 stats por separado
             for(String fn : filenames){
                 reader = new BufferedReader(new FileReader(fn));
@@ -41,21 +42,23 @@ public class volcado {
                     uwu = true;
                     line = reader.readLine();   // sig linea
                 }
-                /* for(tripleta x : dataset)
+                heapSort.sort(dataset);
+                //insertionSort.insertionSortDec(dataset);
+                for(tripleta x : dataset)
                 {
                     writer.write(Integer.toString(x.getId()));
                     writer.write(",");
                     writer.write(Integer.toString(x.getDmg()));
                     writer.write("\n");
-                } */
+                } 
                 reader.close();
                 
             }
-            /* writer.close(); */
+            writer.close();
         }catch(IOException e){
             e.printStackTrace();
         }
-        //heapSort.sort(dataset);
+        
         
     }
 }
