@@ -4,7 +4,7 @@ import java.util.*;
 
 /*
  * Esto no es una copia :v
- * Usé como referencia el codigo otorgado por el profesor (lab a lab)
+ * Usé como referencia el codigo otorgado por el profesor Marting Gutierrez(lab a lab)
  * para así construir la misma idea desde la base. :p
  * 
  */
