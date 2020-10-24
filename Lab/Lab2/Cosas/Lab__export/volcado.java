@@ -20,7 +20,7 @@ public class volcado {
 
 			String line; 
 			boolean started = false;
-
+			// participants and champs .csv
 			for(String fn2: filenames2)
 			{
 				reader = new BufferedReader(new FileReader(fn2));
