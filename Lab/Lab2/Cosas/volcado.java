@@ -25,7 +25,7 @@ public class volcado {
 			{
 				reader = new BufferedReader(new FileReader(fn2));
 				started = false;
-				line = reader.readLine();
+				line = reader.readLine();	
 				while (line != null)
 				{
 					String[] row1;
