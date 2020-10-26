@@ -1,5 +1,4 @@
 import java.io.*;
-import java.lang.*;
 import java.util.*;
 
 /*
@@ -9,26 +8,119 @@ import java.util.*;
  * 
  */
 
-public class volcado {
-    public static void volcar() {
+public class volcado 
+{
+    public static String[] files = {"./stats1.csv","./stats2.csv"};
+    public static String[] files2 = {"./participants.csv","./champs.csv"};
+    public static String[] files3 = {"./stats3.csv"};
+    public static Boolean uwu = false;
+    public static String line;
+    public static HashMap<Integer,String> champs = new HashMap<Integer,String>();
+    public static HashMap<Integer,Integer> participants = new HashMap<Integer,Integer>();
+
+    // este algoritmo simplemente devuelve el dataset en un ArrayList
+    // para luego ser ordenado en App.java
+    public static ArrayList<tripleta> volcarNormal(int x) {
+        BufferedReader reader;   
+        ArrayList<tripleta> dataset = new ArrayList<tripleta>();   
+        hashmaps();
+        try
+        {    
+            if(x == 1){
+                files = files3;
+            }
+            // stats
+            for(String fn : files)
+            {
+                reader = new BufferedReader(new FileReader(fn));
+                line = reader.readLine();
+                uwu = false;
+
+                while(line != null)
+                {
+                    String[] row = line.split(",", -1); 
+                    String champ;
+                    int playerId, championId, dmg;
+      
+                    if(uwu)
+                    {   
+                        row[0] = row[0].replace("\"","");     // id           
+                        row[21] = row[21].replace("\"","");   // totdmgdealt
+
+                        playerId = Integer.parseInt(row[0]);
+                        championId = participants.get(playerId);
+                        champ = champs.get(championId);
+                        dmg = Integer.parseInt(row[21]);
+
+                        tripleta tri = new tripleta(playerId, dmg, champ);
+                        dataset.add(tri);         
+                    } 
+                    uwu = true;
+                    line = reader.readLine();   // sig linea
+                }
+                reader.close();
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return dataset;
+    }
+    // esta función lo añade ordenado usando heapsort
+    // como este algoritmo es malísimo y corre a O(n^2logN)
+    // será ejecutado usando stats3.csv para así demostrar que funciona
+    // retorna un objeto que debe ser manipulado como un queue (dequeue, enqueue)
+    public static priorityQHeapSort volcarPQ(int x)
+    {
         BufferedReader reader;
-        BufferedWriter writer;
-        String outfile = "out.csv";
-        
-        //String[] files = {"./stats3.csv"};
-        String[] files = {"./stats1.csv","./stats2.csv"};
-        String[] files2 = {"./participants.csv","./champs.csv"};
-        ArrayList<tripleta> dataset = new ArrayList<tripleta>(); // matriz
         priorityQHeapSort dataset2 = new priorityQHeapSort(); // esto es O(N^2logN)!!
-        
-        HashMap<Integer,String> champs = new HashMap<Integer,String>();
-        HashMap<Integer,Integer> participants = new HashMap<Integer,Integer>();
+        hashmaps();
         try
         {   
-            writer = new BufferedWriter(new FileWriter(outfile, false)); 
+            for(String fn : files3)
+            {
+                reader = new BufferedReader(new FileReader(fn));
+                line = reader.readLine();
+                uwu = false;
+
+                while(line != null)
+                {
+                    String[] row = line.split(",", -1); 
+                    String champ;
+                    int playerId, championId, dmg;
+
+                    
+                    if(uwu)
+                    {   
+                        row[0] = row[0].replace("\"","");     // id           
+                        row[21] = row[21].replace("\"","");   // totdmgdealt
+
+                        playerId = Integer.parseInt(row[0]);
+                        championId = participants.get(playerId);
+                        champ = champs.get(championId);
+                        dmg = Integer.parseInt(row[21]);
+
+                        tripleta tri = new tripleta(playerId, dmg, champ);
+                        dataset2.enqueue(tri); 
+                    } 
+                    uwu = true;
+                    line = reader.readLine();   // sig linea
+                }
+                reader.close();           
+            }
             
-            String line;
-            Boolean uwu = false;
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return dataset2;
+    }
+    // falta implementar priorityQueue
+    public static void priorityQueue(int x){}
+    // cuando se ejecuta una función de volcado se rellenan los 
+    // hashmaps con los datos necesarios
+    public static void hashmaps()
+    {
+        try{
+            BufferedReader reader;
             // part y champs
             for(String fn2: files2)
             {
@@ -60,74 +152,10 @@ public class volcado {
                 }
                 reader.close();
             }
-            // una vez se tienen ambos hashmaps sabiendo sus respectivas keys (id's)
-            // se puede añadir el nombre del champion usado a la tripleta en O(1)
-            // tal que:     idjugador -> idchampion (participants.csv)
-            //          ->  idchampion -> champion (champs.csv)
-
-            // stats
-            for(String fn : files)
-            {
-                reader = new BufferedReader(new FileReader(fn));
-                line = reader.readLine();
-                uwu = false;
-
-                while(line != null)
-                {
-                    String[] row = line.split(",", -1); 
-                    String champ;
-                    int playerId, championId, dmg;
-
-                    
-                    if(uwu)
-                    {   
-                        row[0] = row[0].replace("\"","");     // id           
-                        row[21] = row[21].replace("\"","");   // totdmgdealt
-
-                        playerId = Integer.parseInt(row[0]);
-                        championId = participants.get(playerId);
-                        champ = champs.get(championId);
-                        dmg = Integer.parseInt(row[21]);
-
-                        tripleta tri = new tripleta(playerId, dmg, champ);
-                        dataset.add(tri);
-                        dataset2.enqueue(tri);
-                    } 
-                    uwu = true;
-                    line = reader.readLine();   // sig linea
-                }
-                //insertionSort.insertionSortDec(dataset);  // working
-                //quickSortAL.quickSort(dataset, 0, dataset.size()-1);  // ranking del menor dmg al mayor e.e
-                //heapSortAL.sort(dataset);                 // working
-                
-                // Aquí una impresión de dataset2.
-                // Descomente para imprimir datos de cola de prioridad 
-                // usando heapsort cada vez que entra un nuevo dato a la cola
-
-                while(!dataset2.isEmpty())
-                {
-                    tripleta temp = dataset2.dequeue();
-                    System.out.println(temp.getId() + "," + temp.getDmg() + "," +temp.getChamp());
-                } 
-
-                // volcado de dataset1 a out.csv
-                /* for(tripleta x : dataset)
-                {
-                    writer.write(Integer.toString(x.getId()));
-                    writer.write(",");
-                    writer.write(Integer.toString(x.getDmg()));
-                    writer.write(",");
-                    writer.write(x.getChamp());
-                    writer.write("\n");
-                }  */
-                reader.close();
-                
-            }
-            writer.close();
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-        
-        
+        } catch(IOException e){ e.printStackTrace(); }
+        // una vez se tienen ambos hashmaps sabiendo sus respectivas keys (id's)
+        // se puede añadir el nombre del champion usado a la tripleta en O(1)
+        // tal que:     idjugador -> idchampion (participants.csv)
+        //          ->  idchampion -> champion (champs.csv)
     }
 }
