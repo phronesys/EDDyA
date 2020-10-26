@@ -19,6 +19,8 @@ public class volcado {
         String[] files = {"./stats1.csv","./stats2.csv"};
         String[] files2 = {"./participants.csv","./champs.csv"};
         ArrayList<tripleta> dataset = new ArrayList<tripleta>(); // matriz
+        priorityQHeapSort dataset2 = new priorityQHeapSort(); // esto es O(N^2logN)!!
+        
         HashMap<Integer,String> champs = new HashMap<Integer,String>();
         HashMap<Integer,Integer> participants = new HashMap<Integer,Integer>();
         try
@@ -89,14 +91,27 @@ public class volcado {
 
                         tripleta tri = new tripleta(playerId, dmg, champ);
                         dataset.add(tri);
+                        dataset2.enqueue(tri);
                     } 
                     uwu = true;
                     line = reader.readLine();   // sig linea
                 }
+                //insertionSort.insertionSortDec(dataset);  // working
                 //quickSortAL.quickSort(dataset, 0, dataset.size()-1);  // ranking del menor dmg al mayor e.e
                 //heapSortAL.sort(dataset);                 // working
-                //insertionSort.insertionSortDec(dataset);  // working
-                for(tripleta x : dataset)
+                
+                // Aquí una impresión de dataset2.
+                // Descomente para imprimir datos de cola de prioridad 
+                // usando heapsort cada vez que entra un nuevo dato a la cola
+
+                while(!dataset2.isEmpty())
+                {
+                    tripleta temp = dataset2.dequeue();
+                    System.out.println(temp.getId() + "," + temp.getDmg() + "," +temp.getChamp());
+                } 
+
+                // volcado de dataset1 a out.csv
+                /* for(tripleta x : dataset)
                 {
                     writer.write(Integer.toString(x.getId()));
                     writer.write(",");
@@ -104,7 +119,7 @@ public class volcado {
                     writer.write(",");
                     writer.write(x.getChamp());
                     writer.write("\n");
-                } 
+                }  */
                 reader.close();
                 
             }
