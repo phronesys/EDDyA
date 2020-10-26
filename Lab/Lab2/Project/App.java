@@ -12,6 +12,7 @@ public class App {
     public static void main(String[] args) {
         priorityQHeapSort dataset2;
         ArrayList<tripleta> dataset;
+        ArrayList<tripleta> dataset3;
         boolean running = true;
         boolean datasetOK = false;
         while(running)
@@ -75,7 +76,6 @@ public class App {
                     }
                     break;
                 case 2:
-                    dataset2 = new priorityQHeapSort();
                     System.out.println("Elija Priority Queue: ");
                     boolean running3 = true;
                     while(running3)
@@ -93,16 +93,20 @@ public class App {
                                 // exec PQ usando HeapSort
                                 // se usa stats3 pq esta estructura
                                 // anda en O(N^2*logN) 
+                                dataset2 = new priorityQHeapSort();
+                                
                                 System.out.println("Usando stats3.csv ...");
                                 dataset2 = volcado.volcarPQ(x);
-                                printerHelperPQ(dataset2);
+                                printerHelperPQHS(dataset2);
 
                                 datasetOK = true;
                                 break;
                             case 2:
                                 // exec PQ usando MaxHeap
-                                volcado.priorityQueue(x);
-                                //printerHelper();
+                                dataset3 = new ArrayList<tripleta>();
+
+                                dataset3 = volcado.priorityQ(x);
+                                printerHelper(dataset3);
 
                                 datasetOK = true;
                                 break;
@@ -141,7 +145,7 @@ public class App {
         }
         
     }
-    public static void printerHelperPQ(priorityQHeapSort dataset)
+    public static void printerHelperPQHS(priorityQHeapSort dataset)
     {
         System.out.println("0.- Abortar");
         System.out.println("1.- Exportar a out.csv");
@@ -153,11 +157,11 @@ public class App {
                 break;
             case 1:
                 System.out.println("Exportando a out.csv");
-                //write.export(dataset);
+                write.exportPQHS(dataset);
                 break;
             case 2:
                 System.out.println("Imprimiendo datos");
-                write.printerPQ(dataset);
+                write.printerPQHS(dataset);
                 break;
             default:
                 break;

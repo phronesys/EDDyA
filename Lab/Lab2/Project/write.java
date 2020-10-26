@@ -20,7 +20,26 @@ public class write {
             writer.close();
         }catch(IOException e){e.printStackTrace();}
     }
-    public static void printerPQ(priorityQHeapSort dataset){
+    public static void exportPQHS(priorityQHeapSort dataset){
+        BufferedWriter writer;
+        String outfile = "out.csv";
+
+        try{
+            writer = new BufferedWriter(new FileWriter(outfile, false));
+            while(!dataset.isEmpty())
+                {
+                    tripleta x = dataset.dequeue();
+                    writer.write(Integer.toString(x.getId()));
+                    writer.write(",");
+                    writer.write(Integer.toString(x.getDmg()));
+                    writer.write(",");
+                    writer.write(x.getChamp());
+                    writer.write("\n");
+                }
+            writer.close();
+        }catch(IOException e){e.printStackTrace();}
+    }
+    public static void printerPQHS(priorityQHeapSort dataset){
         while(!dataset.isEmpty())
         {
             tripleta temp = dataset.dequeue();
@@ -33,4 +52,6 @@ public class write {
             System.out.println(temp.getId() + "," + temp.getDmg() + "," +temp.getChamp());
         }
     }
+    // print PQ
+    // export PQ
 }

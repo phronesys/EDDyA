@@ -113,8 +113,54 @@ public class volcado
         }
         return dataset2;
     }
-    // falta implementar priorityQueue
-    public static void priorityQueue(int x){}
+    
+    public static ArrayList<tripleta> priorityQ(int x){
+        BufferedReader reader;
+        priorityQueue temp = new priorityQueue();
+        ArrayList<tripleta> dataset3 = new ArrayList<tripleta>();
+        hashmaps();
+        try
+        {   
+            for(String fn : files)
+            {
+                reader = new BufferedReader(new FileReader(fn));
+                line = reader.readLine();
+                uwu = false;
+
+                while(line != null)
+                {
+                    String[] row = line.split(",", -1); 
+                    String champ;
+                    int playerId, championId, dmg;
+
+                    if(uwu)
+                    {   
+                        row[0] = row[0].replace("\"","");     // id           
+                        row[21] = row[21].replace("\"","");   // totdmgdealt
+
+                        playerId = Integer.parseInt(row[0]);
+                        championId = participants.get(playerId);
+                        champ = champs.get(championId);
+                        dmg = Integer.parseInt(row[21]);
+
+                        tripleta tri = new tripleta(playerId, dmg, champ);
+                        temp.add(tri); 
+                    } 
+                    uwu = true;
+                    line = reader.readLine();   // sig linea
+                }
+                reader.close();           
+            }
+            
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        while(!temp.isEmpty())
+        {
+            dataset3.add(temp.getMax());
+        }
+        return dataset3;
+    }
     // cuando se ejecuta una función de volcado se rellenan los 
     // hashmaps con los datos necesarios
     public static void hashmaps()
