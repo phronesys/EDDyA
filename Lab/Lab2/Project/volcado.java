@@ -114,10 +114,9 @@ public class volcado
         return dataset2;
     }
     
-    public static ArrayList<tripleta> priorityQ(int x){
+    public static priorityQueue priorityQ(int x){
         BufferedReader reader;
         priorityQueue temp = new priorityQueue();
-        ArrayList<tripleta> dataset3 = new ArrayList<tripleta>();
         hashmaps();
         try
         {   
@@ -155,11 +154,7 @@ public class volcado
         }catch(IOException e){
             e.printStackTrace();
         }
-        while(!temp.isEmpty())
-        {
-            dataset3.add(temp.getMax());
-        }
-        return dataset3;
+        return temp;
     }
     // cuando se ejecuta una función de volcado se rellenan los 
     // hashmaps con los datos necesarios

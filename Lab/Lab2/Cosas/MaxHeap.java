@@ -68,7 +68,7 @@ public class MaxHeap
             System.out.println();
         }
     }
-
+    
     public Tripleta extractMax() 
     {
         Tripleta max = ((Tripleta)Heap.get(0));

@@ -1,4 +1,5 @@
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 public class write {
     
@@ -39,6 +40,7 @@ public class write {
             writer.close();
         }catch(IOException e){e.printStackTrace();}
     }
+    
     public static void printerPQHS(priorityQHeapSort dataset){
         while(!dataset.isEmpty())
         {

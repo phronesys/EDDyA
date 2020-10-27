@@ -1,18 +1,17 @@
 
-import java.util.*;
-
 /**
  *  insertionSort, quiclSort, heapSort
  *  priorityQueue (heapSort)
  *  priorityQueue (maxHeap)
  */
-import java.util.Scanner;
+import java.util.*;
 public class App {
     public static Scanner scan = new Scanner(System.in);
     public static void main(String[] args) {
         priorityQHeapSort dataset2;
+        priorityQueue dataset3;
         ArrayList<tripleta> dataset;
-        ArrayList<tripleta> dataset3;
+        //ArrayList<tripleta> dataset3;
         boolean running = true;
         boolean datasetOK = false;
         while(running)
@@ -43,7 +42,7 @@ public class App {
                                 break;
                             case 1:
                                 // insertion
-                                System.out.println("Se usará stats3.csv ...");
+                                System.out.println("Usando stats3.csv ...");
                                 dataset = volcado.volcarNormal(x);
                                 insertionSort.insertionSortDec(dataset);
                                 printerHelper(dataset);
@@ -103,10 +102,11 @@ public class App {
                                 break;
                             case 2:
                                 // exec PQ usando MaxHeap
-                                dataset3 = new ArrayList<tripleta>();
+                                dataset3 = new priorityQueue();
 
                                 dataset3 = volcado.priorityQ(x);
-                                printerHelper(dataset3);
+                                
+                                printerHelperPQ(dataset3);
 
                                 datasetOK = true;
                                 break;
@@ -122,6 +122,7 @@ public class App {
             }
         } 
     }
+    // sirve para algoritmos de ordenamiento
     public static void printerHelper(ArrayList<tripleta> dataset)
     {
         System.out.println("0.- Abortar");
@@ -145,6 +146,7 @@ public class App {
         }
         
     }
+    
     public static void printerHelperPQHS(priorityQHeapSort dataset)
     {
         System.out.println("0.- Abortar");
@@ -162,6 +164,31 @@ public class App {
             case 2:
                 System.out.println("Imprimiendo datos");
                 write.printerPQHS(dataset);
+                break;
+            default:
+                break;
+        }
+        
+    }
+    public static void printerHelperPQ(priorityQueue dataset)
+    {
+        System.out.println("0.- Abortar");
+        System.out.println("1.- Exportar a out.csv");
+        System.out.println("2.- Imprimir por terminal");
+        int n = scan.nextInt();
+        switch(n){
+            case 0:
+                System.out.println("uwu...");
+                break;
+            case 1:
+                System.out.println("Exportando a out.csv");
+                //write.export(dataset);
+                dataset.exportOrder();
+                break;
+            case 2:
+                System.out.println("Imprimiendo datos");
+                //write.printerNormal(dataset);
+                dataset.printOrder();
                 break;
             default:
                 break;

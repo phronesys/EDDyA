@@ -17,7 +17,7 @@ public class heapSortAL {
         // array list en minheap
         for(int i = n - 1; i >= 0; i--)
         {
-            tripleta temp = (tripleta)trip.get(0); // en el root debe estar el menor elemento y será puesto al final
+            tripleta temp = (tripleta)trip.get(0); // en el root debe estar el menor elemento y sera puesto al final
             trip.set(0, trip.get(i));
             trip.set(i, temp);
 
@@ -32,7 +32,7 @@ public class heapSortAL {
         int right = 2*i + 2;
 
         // tiene que quedar la tripleta con menor dmg como root
-        // primero se busca la posición donde esta el menor
+        // primero se busca la posicion donde esta el menor
         if(left < n && trip.get(left).getDmg() < trip.get(smallest).getDmg()){
             smallest = left;
         }
