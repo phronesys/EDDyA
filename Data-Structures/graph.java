@@ -25,8 +25,16 @@ class Graph {
     List<List<NodeGraph>> adj_list = new ArrayList<>();
 
     public Graph(List<Arista> aristas){
+        // memory alocation 
         for (int i = 0; i < aristas.size(); i++)
-            adj_list.add()
+            adj_list.add(i, new ArrayList<>());
+        
+        // esto añade las uniones del grafo
+        for (Arista a: aristas)
+        {
+            adj_list.get(a.src)
+        }
+        
     }
 }
 
