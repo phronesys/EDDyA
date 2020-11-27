@@ -1,47 +1,31 @@
 /* 
-    ref:
-        https://www.softwaretestinghelp.com/java-graph-tutorial/
-        https://www.baeldung.com/java-graphs
+    Implementación clase 16nov 
+    Adjacency Matrix
 */
-import java.util.*;
-
-// class to store aristas (edges) of the eighted graph
-class Arista {
-    int src, dest, weight;
-    Arista(int desde, int hacia, int peso){
-        this.src = desde;
-        this.dest = hacia;
-        this.weight = peso;
-    }
-}
-class Graph {
-    static class NodeGraph {
-        int value, weight; 
-        NodeGraph(int value, int weight) {
-            this.value = value;
-            this.weight = weight;
-        }
-    }
-    List<List<NodeGraph>> adj_list = new ArrayList<>();
-
-    public Graph(List<Arista> aristas){
-        // memory alocation 
-        for (int i = 0; i < aristas.size(); i++)
-            adj_list.add(i, new ArrayList<>());
-        
-        // esto añade las uniones del grafo
-        for (Arista a: aristas)
-        {
-            adj_list.get(a.src)
-        }
-        
-    }
-}
-
- // main
 public class graph {
-    public static void main(String[] args) {
-        
+    public int V; // numero de vertices
+    public int[][] matrix;
+    
+    public graph(int V) {
+        this.V = V;
+        matrix = new int[V][V];
+
+        for (int i = 0; i < V; i++) {
+            for (int j = 0; i < V; j++) {
+                matrix[i][j] = 0;
+            }
+        }
     }
+
+    public void addConnection(int x, int y) { 
+        matrix[x][y] = 1;
+        matrix[y][x] = 1; // this works for undirected graphs
+    }
+    public void removeConnection(int x, int y) { 
+        matrix[x][y] = 0;
+        matrix[y][y] = 0;
+    }
+
 }
 
+ 
