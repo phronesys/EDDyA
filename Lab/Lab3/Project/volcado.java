@@ -1,77 +1,95 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.util.*;
+import java.lang.*;
+import java.io.*;
 
 public class volcado {
 	public static void main(String[] args) {
 		BufferedReader reader;
 		BufferedWriter writer;
-		ArrayList<ArrayList<String>> dataset = new ArrayList<ArrayList<String>>();
+		String[] filenames = {"./stats1.csv", "./stats2.csv"};
+		String[] filenames2 = {"./participants.csv"};
+		HashMap<Integer, Integer> duocarry = new HashMap<Integer, Integer>();
+		HashMap<Integer, Integer> duosupport = new HashMap<Integer, Integer>();
+		HashMap<Integer, Integer> solo = new HashMap<Integer, Integer>();
+		HashMap<Integer, Integer> none = new HashMap<Integer, Integer>();
+		
+		// totdmgdealt guarda [id - totdmg] por cada player de stats 1 y 2
+		HashMap<Integer, Integer> totdmgdealt = new HashMap<Integer, Integer>();
+		String outfilename = "./out.csv";
+		
 		try {
-			reader = new BufferedReader(new FileReader("teambans.csv"));
-			writer = new BufferedWriter(new FileWriter("salida_java.csv", false));
-			String line = reader.readLine();
-			int i = 0, j = 0, k = 0;
-			while (line != null)
+			writer = new BufferedWriter(new FileWriter(outfilename, false));
+
+			String line;
+			boolean started = false;
+
+			for(String fn : filenames)
 			{
-				ArrayList<String> parsing1 = new ArrayList<String>();
-				String[] row1, row2;
-				row1 = line.split("\"",-1);
-				for(String x : row1)
-				{
-					if(x.length() > 0 && x.charAt(0) == ',')
-					{
-						if(x.length() > 1)
-						{
-							x = x.substring(1, x.length());
-						}
-					}
-					if(i%2 == 0)
-					{
-						if(x.length() > 0 && x.charAt(x.length()-1) == ',')
-						{
-							x = x.substring(0, x.length()-1);
-						}
-						row2 = x.split(",",-1);
-						//System.out.println(row2.length);
-						for(String y : row2)
-						{
-							parsing1.add(y);
-						}
-					}
-					else
-					{
-						String z = new String("\"");
-						z = z.concat(x);
-						z = z.concat("\"");
-						parsing1.add(z);
-					}
-					i++;
-				}
-				i = 0;
-				dataset.add(parsing1);
+				reader = new BufferedReader(new FileReader(fn));
 				line = reader.readLine();
-			}
-			for(ArrayList a : dataset)
-			{
-				for(j = 0; j < a.size()-1; j++)
+				started = false;
+
+				while (line != null) 
 				{
-					writer.write(a.get(j).toString());
-					writer.write(",");
+					String[] row;
+					Integer playerId, totdmg;
+					row = line.split(",", -1);
+					if(started){
+						row[0] = row[0].replace("\"",""); // 0
+						row[21] = row[21].replace("\"","");
+
+						playerId = Integer.parseInt(row[0]);
+						totdmg = Integer.parseInt(row[21]);
+
+						totdmgdealt.put(playerId, totdmg);
+					}
+					started = true;
+					line = reader.readLine();
 				}
-				writer.write(a.get(j).toString());
-				//writer.write(System.getProperty("line.separator"));
-				writer.write("\n");
+				reader.close();
 			}
-			reader.close();
-			writer.close();
-		} 
-		catch (IOException e)
-		{
+			for(String fn : filenames2)
+			{
+				reader = new BufferedReader(new FileReader(fn));
+				started = false;
+				line = reader.readLine();
+				while(line != null)
+				{
+					String[] row;
+					Integer playerId;
+					row = line.split(",",-1);
+					if(started)
+					{
+						row[0] = row[0].replace("\"","");
+						playerId = Integer.parseInt(row[0]);
+
+						switch(row[6])
+						{
+							case "DUO_CARRY":
+								duocarry.put(playerId, totdmgdealt.get(playerId));
+								break;
+							case "DUO_SUPPORT":
+								duosupport.put(playerId, totdmgdealt.get(playerId));
+								break;
+							case "SOLO":
+								solo.put(playerId, totdmgdealt.get(playerId));
+								break;
+							case "NONE":
+								none.put(playerId, totdmgdealt.get(playerId));
+								break;
+							default:
+								break;
+						}
+					}
+				}
+			}
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		 
+		
+
 	}
 }
