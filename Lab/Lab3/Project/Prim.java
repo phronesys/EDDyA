@@ -1,51 +1,43 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-
+import java.util.*;
 public class Prim {
-    public Prim()
+    public Prim(){}
+    // esto crea un equipo para un id dado y su hashmap con su id y dmg
+    public Integer[] matchmaking(Integer id, ArrayList<HashMap<Integer,Integer>> data)
     {
+        int n_players = 0; // para recorrer cada player
 
-    }
-    // minimum spanning tree
-    public void MST(int graph[][], int size)
-    {
-        int edge = 0;
-        boolean ST[] = new boolean[size];
-        Arrays.fill(ST, false); // clean
-        ST[0] = true;
+        Integer[] team = new Integer[5];
+        Integer[] team_dmg = new Integer[5];
+        boolean[] checked = new boolean[5];
+        Integer currentPlayer = id;
+        Integer currentDmg;
+        HashMap<Integer,Integer> currentHash; 
 
-        System.out.println("PRIM");
-        System.out.println("Edge : Weight");
-        while(edge < size - 1) 
+        // se rellenan los arrays 
+        Arrays.fill(team,Integer.valueOf(-1));
+        Arrays.fill(team_dmg,Integer.valueOf(-1));
+        Arrays.fill(checked,false);
+
+        currentHash = (HashMap<Integer,Integer>) data.get(0);
+        currentDmg = (Integer) currentHash.get(currentPlayer);
+
+        currentHash.remove(id);
+        n_players++; 
+
+        while (n_players < 5) // cada player
         {
-            int min = Integer.MAX_VALUE;
-            int x = 0;
-            int y = 0;
-
-            for(int i = 0; i < size; i++)
+            for(int i = 1; i < 5; i++)
             {
-                // ST[0] es true por ende se parte desde aqui, asi es más facil iterar
-                if(ST[i] == true)
+                if(!checked[i] && i <= 2)
                 {
-                    for (int j = 0; j < size; j++)
-                    {
-                        if(!ST[j] && graph[i][j] != Integer.MAX_VALUE)
-                        {
-                            if(graph[i][j] < min)
-                            {
-                                min = graph[i][j];
-                                x = i;
-                                y = j;
-                            }
-                        }
-                    }
+                    currentHash = (HashMap<Integer,Integer>)data.get(i);
                 }
             }
-            System.out.println(x + " - " + y + " : " + graph[x][y]);
-            ST[y] = true;
-            edge++;
         }
+
+
+
+
+        return team;
     }
 }
- 

@@ -9,12 +9,12 @@ public class volcado {
 		//String[] filenames = {"./stats1.csv","./stats2.csv"};
 		String[] filenames = {"./stats3.csv"};
 		String[] filenames2 = {"./participants.csv"};
-		HashMap duocarry = new HashMap<Integer,Integer>();
-		HashMap duosupport = new HashMap<Integer,Integer>();
-		HashMap solo = new HashMap<Integer,Integer>();
-		HashMap none = new HashMap<Integer,Integer>();
-		HashMap totdmgdealt = new HashMap<Integer,Integer>();
-		String outfilename = "./roles_out.txt";			
+		HashMap<Integer, Integer> duocarry = new HashMap<Integer,Integer>();
+		HashMap<Integer, Integer> duosupport = new HashMap<Integer,Integer>();
+		HashMap<Integer, Integer> solo = new HashMap<Integer,Integer>();
+		HashMap<Integer, Integer> none = new HashMap<Integer,Integer>();
+		HashMap<Integer, Integer> totdmgdealt = new HashMap<Integer,Integer>();
+		String<Integer, Integer> outfilename = "./roles_out.txt";			
 		try 
 		{
 			writer = new BufferedWriter(new FileWriter(outfilename, false));
@@ -87,7 +87,7 @@ public class volcado {
 									break;
 							}
 						}
-					}
+					}	
 					started = true;
 					line = reader.readLine();
 				}
