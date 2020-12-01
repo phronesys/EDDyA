@@ -10,6 +10,7 @@ public class volcado {
 		//String[] filenames = {"./stats1.csv", "./stats2.csv"};
 		String[] filenames = {"./stats3.csv"};
 		String[] filenames2 = {"./participants.csv"};
+		String filename3 = "team.csv";
 		HashMap<Integer, Integer> duocarry = new HashMap<Integer, Integer>();
 		HashMap<Integer, Integer> duosupport = new HashMap<Integer, Integer>();
 		HashMap<Integer, Integer> solo = new HashMap<Integer, Integer>();
@@ -18,7 +19,10 @@ public class volcado {
 		// totdmgdealt guarda [id - totdmg] por cada player de stats 1 y 2
 		HashMap<Integer, Integer> totdmgdealt = new HashMap<Integer, Integer>();
 		String outfilename = "./out.csv";
-		
+
+		HashMap<Integer, Integer> teamData = new HashMap<Integer, Integer>();
+		String outfilename2 = "./out2.csv";
+
 		try {
 			writer = new BufferedWriter(new FileWriter(outfilename, false));
 
@@ -91,6 +95,24 @@ public class volcado {
 				}
 				reader.close();
 			}
+			// esto leerá el teams.csv ya ordenado por el greedy
+			reader = new BufferedReader(new FileReader(filename3));
+			line = reader.readLine();
+			while(line != null)
+			{
+				String[] row;
+				Integer teamId, teamDmg;
+				row = line.split(",",-1);
+
+				row[0] = row[0].replace("\"","");
+				row[1] = row[1].replace("\"","");
+				teamId = Integer.parseInt(row[0]);
+				teamDmg = Integer.parseInt(row[1]);
+				teamData.put(teamId, teamDmg);
+				line = reader.readLine();
+			}
+			reader.close();
+
 			// esto se ve muy bonito asi que lo dejo :v //
 			writer.write("DUO CARRY\n\n");
 			writer.write("Id \t TotDmg\n---------------\n");
@@ -166,8 +188,19 @@ public class volcado {
 
 			Prim p = new Prim();
 			Integer team[] = new Integer[5];
-			team = p.matchmaking(11, data);
+			ArrayList<Integer> entries = new ArrayList<Integer>();
 
+			for(Map.Entry<Integer, Integer> entry: duocarry.entrySet())
+			{
+				entries.add(entry.getKey());
+			}
+
+			for(int i = 0; i < entries.size(); i++){
+				team = p.matchmaking(entries.get(i), data);
+			}
+			greedy miau = new greedy();
+			ArrayList<Integer> emparejamiento = gr.pair(teamData, outfilename2);
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
