@@ -166,7 +166,7 @@ public class volcado {
 
 			Prim p = new Prim();
 			Integer team[] = new Integer[5];
-			
+			team = p.matchmaking(11, data);
 
 
 		} catch (Exception e) {
