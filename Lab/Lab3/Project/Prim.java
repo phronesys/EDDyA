@@ -1,10 +1,14 @@
 import java.util.*;
+/* en vez de devolver un array de enteros, prefiero devolver el promedio del dmg del equipo
+    y en volcado asignarle un teamid
+*/
 public class Prim {
     public Prim(){}
     // esto crea un equipo para un id dado y su hashmap con su id y dmg
-    public Integer[] matchmaking(Integer id, ArrayList<HashMap<Integer,Integer>> data)
+    public int matchmaking(Integer id, ArrayList<HashMap<Integer,Integer>> data)
     {
         int n_players = 0; // para recorrer cada player
+        int total_dmg = 0;
 
         Integer[] team = new Integer[5];
         Integer[] team_dmg = new Integer[5];
@@ -63,25 +67,17 @@ public class Prim {
                         }
                     }
                 }
-                team[i] = x;
-                team_dmg[i] = (Integer)currentHash.get(x);
+                team[i] = x; // cada playerid
+                team_dmg[i] = (Integer)currentHash.get(x); // cada dmg respectivo del player
                 checked[i] = true;
                 currentHash.remove(x);
                 n_players++;
             }
-            System.out.println("El equipo es: ");
-            for(int k = 0; k < 4; k++)
+            for(int i = 0; i < 5; i++)
             {
-                System.out.print(team[k] + ", ");
+                total_dmg += team_dmg[i];
             }
-            System.out.print(team[4] + "\n");
-
-            return team; 
         }
-
-
-
-
-        return team;
+        return total_dmg;
     }
 }
